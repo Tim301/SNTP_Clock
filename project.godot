@@ -15,11 +15,15 @@ run/main_scene="res://SNTP.tscn"
 run/low_processor_mode=true
 config/icon="res://icon.png"
 
+[autoload]
+
+SNTP="*res://SNTP.gd"
+
 [display]
 
+window/size/width=300
+window/size/height=400
 window/size/resizable=false
-window/size/test_width=300
-window/size/test_height=300
 window/stretch/aspect="keep"
 
 [physics]

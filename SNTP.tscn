@@ -1,14 +1,77 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://SNTP.gd" type="Script" id=1]
+[ext_resource path="res://sync_time.gd" type="Script" id=1]
+[ext_resource path="res://sys_time.gd" type="Script" id=2]
+[ext_resource path="res://sntp_time.gd" type="Script" id=3]
+[ext_resource path="res://info.gd" type="Script" id=4]
+[ext_resource path="res://Clock.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource( 1 )
 
-[node name="Button" type="Button" parent="."]
-text = "Synchronize Time"
+[node name="Clock" parent="." instance=ExtResource( 5 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 148.822
+margin_top = 151.429
+margin_right = 148.822
+margin_bottom = 151.429
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_top = 300.0
+margin_right = 298.0
+margin_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="button_up" from="Button" to="." method="synchronize"]
+[node name="sync_time" type="Button" parent="VBoxContainer"]
+margin_right = 298.0
+margin_bottom = 20.0
+text = "Synchronize Time"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="sys_time" type="Label" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 298.0
+margin_bottom = 38.0
+text = "sys_time"
+valign = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="sntp_time" type="Label" parent="VBoxContainer"]
+margin_top = 42.0
+margin_right = 298.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+text = "SNTP time: "
+valign = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="info" type="Label" parent="VBoxContainer"]
+margin_top = 60.0
+margin_right = 298.0
+margin_bottom = 74.0
+valign = 1
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="VBoxContainer/sync_time" to="VBoxContainer/sync_time" method="_on_sync_time_pressed"]
